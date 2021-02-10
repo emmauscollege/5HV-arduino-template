@@ -1,4 +1,5 @@
-##Circuit maken
+## Circuit maken
+
 In deze map zet je een tekening van je circuit.
 Het circuit is een aansluitschema, je kunt daarop zien welke componenten je gebruikt en op welke pinnen van de arduino die zijn aangesloten.
 
