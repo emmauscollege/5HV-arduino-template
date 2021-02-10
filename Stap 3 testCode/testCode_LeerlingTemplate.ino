@@ -6,6 +6,7 @@
  *****************************************/
 
 ####### HIERNA CODE NOG AANPASSEN
+TEVENS OPMERKING MAKEN IN CODE DAT JE LIBRARY NODIG HEBT VOOR DISPLAY
 
 
 /*****************************************
