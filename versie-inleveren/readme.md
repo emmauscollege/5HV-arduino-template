@@ -8,6 +8,6 @@ Je levert in:
 
 Tip: Je kunt meerdere keren inleveren. Lever een dag voor de deadline alvast een versie in die (bijna) af is. Op die manier voorkom je dat je door onverwachte problemen niets kunt inleveren. 
 
-Je levert uiterlijk in op donderdag 22 april 23:59 in. 
+Je levert uiterlijk in op **donderdag 22 april 23:59** in. 
 
 
