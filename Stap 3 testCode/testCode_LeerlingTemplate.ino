@@ -1,61 +1,30 @@
 /*****************************************
-   TestCode
-   met grove 2 x 16 display van Seeeduino
+   Voorbeeld TestCode
+   Voor circuit met 2 leds en 2 knoppen
+   Breid de code zelf uit
+   zodat je deze kunt gebruiken om te testen
+   of alle componenten (nog) goed
+   zijn aangesloten op je Arduino
    Emmauscollege
    v20210210GEE
  *****************************************/
-
-####### HIERNA CODE NOG AANPASSEN
-TEVENS OPMERKING MAKEN IN CODE DAT JE LIBRARY NODIG HEBT VOOR DISPLAY
-
 
 /*****************************************
    variabelen die je gebruikt maken
  *****************************************/
 // gebruikte pinnen
-const int pinLedA   = 12; // pin van LED voor speler 1
-const int pinLedB   = 11; // pin van LED voor speler 2
-const int pinKnopA  = 2; // pin van knop voor speler 1
-const int pinKnopB  = 3; // pin van knop voor speler 2
-
-// variabelen om waarden van sensoren en actuatoren te onthouden
-int knopA = 0;
-int knopB = 0;
-
-// variabelen voor de toestanden
-const int TELAF = 1; // tel af tot spel start
-const int SPEEL = 2; // speel het spel
-const int WIN   = 3; // laat zien wie de winnaar is
-int toestand = TELAF;
-unsigned long toestandStartTijd = 0;
+const int pinLedA   = 12; // pin van LED A
+const int pinLedB   = 11; // pin van LED B
+const int pinKnopA  = 2; // pin van knop A
+const int pinKnopB  = 3; // pin van knop B
 
 /*****************************************
-   functies die je gebruikt maken
+   setup()
  *****************************************/
-// code die steeds wordt uitgevoerd in toestand TELAF
-void telafLoop() {
-  // tel af
-}
-
-// code die steeds wordt uitgevoerd in toestand SPEEL
-void speelLoop() {
-  // speel spel
-}
-
-// code die steeds wordt uitgevoerd in toestand SPEEL
-void winLoop() {
-  // toon wie gewonnen heeft
-}
-
-
-/*****************************************
-   setup() en loop()
- *****************************************/
-
 void setup() {
   // enable console en stuur opstartbericht
   Serial.begin(9600);
-  Serial.println("Game start");
+  Serial.println("Test start");
 
   // zet pinmode voor leds
   pinMode(pinLedA, OUTPUT);
@@ -64,38 +33,30 @@ void setup() {
   // zet pinmode voor knoppen
   pinMode(pinKnopA, INPUT);
   pinMode(pinKnopB, INPUT);
+
+  // zet LEDs aan
+  digitalWrite(pinLedA, HIGH);
+  digitalWrite(pinLedB, HIGH);
+  // wacht seconde zodat je kunt zien dat de LEDs het doen
+  delay(1000);
 }
 
+/*****************************************
+   loop()
+ *****************************************/
 void loop() {
-  // lees sensorwaarden
-  knopA = digitalRead(pinKnopA);
-  knopB = digitalRead(pinKnopB);
+  // zet LedA aan/uit afhankelijk van stand van knopA
+  if (digitalRead(pinKnopA) == LOW) {
+    digitalWrite(pinLedA, LOW);
+  } else {
+    digitalWrite(pinLedA, HIGH);
+  }
 
-  // bepaal toestand
-  if (toestand == TELAF) {
-    telafLoop();
-    if (millis() - toestandStartTijd > 2000) { // 2 seconden voorbij
-      toestandStartTijd = millis();
-      toestand = SPEEL;
-      Serial.println("Nieuwe toestand: SPEEL");
-    }
-  }
-  if (toestand == SPEEL) {
-    speelLoop();
-    if (millis() - toestandStartTijd > 5000) { // 5 seconden voorbij
-      toestandStartTijd = millis();
-      toestand = WIN;
-      Serial.println("Nieuwe toestand: WIN");
-    }
-  }
-  if (toestand == WIN) {
-    winLoop();
-    if (millis() - toestandStartTijd > 1000 &&  // 1 seconde voorbij en
-        knopA == HIGH && knopB == HIGH) {       // beide knoppen ingedrukt
-      toestandStartTijd = millis();
-      toestand = TELAF;
-      Serial.println("Nieuwe toestand: TELAF");
-    }
+  // zet LedB aan/uit afhankelijk van stand van nopB
+  if (digitalRead(pinKnopB) == LOW) {
+    digitalWrite(pinLedB, LOW);
+  } else {
+    digitalWrite(pinLedB, HIGH);
   }
 
   // kleine vertraging, 100 keer per seconde loopen is genoeg
