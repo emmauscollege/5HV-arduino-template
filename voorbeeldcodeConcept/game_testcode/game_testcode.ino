@@ -13,14 +13,13 @@
 /*****************************************
    libraries die je gebruikt 
 
-   de minimaal benodigde library-bestanden voor het display 
-   zijn bij deze code meegeleverd
-   de volledige library voor het display inclusief voorbeelden 
-   kun je hier downloaden en installeren in de Arduino IDE
-   https://github.com/Seeed-Studio/Grove_LCD_RGB_Backlight/archive/master.zip
+   LCD met 2 regels van 16 karakters 
+   (de RGB backlit kan niet van kleur worden veranderd)
+   https://www.arduino.cc/reference/en/libraries/grove-lcd-rgb-backlight/
+
  *****************************************/
 #include <Wire.h>
-#include "src/rgb_lcd.h"
+#include "rgb_lcd.h"
 
 /*****************************************
    variabelen die je gebruikt
