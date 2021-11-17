@@ -36,6 +36,10 @@ const int pin8Groen = 40; // pin van voetgangersstoplicht 8 groen
 const int pin7Knop  = 41; // pin van knop naast licht 7
 const int pin8Knop  = 43; // pin van knop naast licht 8
 
+// lampjes op de knoppen, die zitten niet op elk stoplichtenplein
+const int pin7Wit   = 48; // pin van lamp in knop7 wit
+const int pin8Wit   = 50; // pin van lamp in knop8 wit
+
 // variabelen om waarden van sensoren en actuatoren te onthouden
 int knop7 = 0;
 int knop8 = 0;
@@ -161,6 +165,11 @@ void setup() {
   // zet pinmode voor knoppen
   pinMode(pin7Knop, INPUT);
   pinMode(pin8Knop, INPUT);
+  pinMode(pin7Wit, OUTPUT);
+  pinMode(pin8Wit, OUTPUT);
+  // witte lamp in knoppen aan (zit niet op elke versie van het stoplichtenplein)
+  digitalWrite(pint8Wit, HIGH);
+  digitalWrite(pint7Wit, HIGH);
 }
 
 void loop() {
