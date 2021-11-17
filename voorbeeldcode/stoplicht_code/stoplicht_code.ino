@@ -168,8 +168,8 @@ void setup() {
   pinMode(pin7Wit, OUTPUT);
   pinMode(pin8Wit, OUTPUT);
   // witte lamp in knoppen aan (zit niet op elke versie van het stoplichtenplein)
-  digitalWrite(pint8Wit, HIGH);
-  digitalWrite(pint7Wit, HIGH);
+  digitalWrite(pin8Wit, HIGH);
+  digitalWrite(pin7Wit, HIGH);
 }
 
 void loop() {
