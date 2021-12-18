@@ -57,6 +57,6 @@ Tip: Je kunt meerdere keren inleveren. Zet enkele dagen voor de deadline alvast 
 
 ## Documentatie
 - In de submap voorbeeldcode vind je documentatie en voorbeeldcode voor de projecten waaruit je kunt kiezen.
-- In de Arduino Language Reference vind je een beschrijving van opdrachten in de Arduino-taal (C)/n
+- In de Arduino Language Reference vind je een beschrijving van opdrachten in de Arduino-taal <br>
 https://www.arduino.cc/reference/en/
 
