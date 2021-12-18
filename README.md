@@ -56,7 +56,7 @@ Je levert uiterlijk in op de datum die in de studiewijzer staat.
 Tip: Je kunt meerdere keren inleveren. Zet enkele dagen voor de deadline alvast een werkende versie in GitHub die bijna af is. Op die manier voorkom je dat er door onverwachte problemen een niet-werkende versie wordt beoordeeld.
 
 ## Documentatie
-- In de submap voorbeeldcode vind je documentatie en voorbeeldcode voor de projecten waaruit je kunt kiezen.
+- In de map "voorbeeldcode" van deze repo vind je documentatie en voorbeeldcode voor de projecten waaruit je kunt kiezen.
 - In de Arduino Language Reference vind je een beschrijving van opdrachten in de Arduino-taal <br>
 https://www.arduino.cc/reference/en/
 
