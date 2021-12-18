@@ -51,7 +51,7 @@ Je levert in door in elke map een bestand te zetten:
 5.	Een video met geluid (.mp4 of .mov van maximaal 20MB of .txt bestand met link naar youtube, maximaal 2 minuten) waarin je je apparaat demonstreert.
 Ruim de mappen op voor de inleverdatum, zodat er geen oude bestanden meer in staan. Zorg voor logische bestandsnamen.
 
-Je levert uiterlijk in op de datum die in de studiewijzer staat in.
+Je levert uiterlijk in op de datum die in de studiewijzer staat.
 
 Tip: Je kunt meerdere keren inleveren. Zet enkele dagen voor de deadline alvast een werkende versie in GitHub die bijna af is. Op die manier voorkom je dat er door onverwachte problemen een niet-werkende versie wordt beoordeeld.
 
