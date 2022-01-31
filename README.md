@@ -51,9 +51,9 @@ Je kunt een toestandsdiagram bijvoorbeeld als volgt maken
 In de map voor deze stap zet je de Arduino-code (het .ino bestand) van je project. De naam van een .ino bestand mag geen spaties bevatten en het .ino bestand moet in een map staan met dezelfde naam.
 
 ## Stap 5: Video
-In deze map zet je een video die de werking van je project demonstreert.
+- [ ] Maak een video die de werking van je project demonstreert.
 
-Het is een video met geluid in .mp4 of .mov formaat van maximaal 20MB of .txt bestand met link naar youtube. De video duurt maximaal 2 minuten.
+Het is een video met geluid (uitleg tijdens de demonstratie) in .mp4 of .mov formaat van maximaal 20MB of .txt bestand met link naar youtube. De video duurt maximaal 2 minuten.
 
 ## Inleveren
 Je levert in door in elke map een bestand te zetten:
