@@ -1,9 +1,17 @@
 # 5HV-arduino-template
 In deze repo bewaar je alle bestanden die je maakt voor de opdracht Arduino.
 
+## Stap 0: Starten
+-[ ]	Je hebt je GitHub-inlognaam aan de docent doorgegeven, zodat die een Github-repo kan aanmaken.
+-[ ]	Je hebt gekozen wat je gaat maken en dat aan de docent doorgegeven, bij een eigen idee moet de docent het goedkeuren.
+-[ ]	Je hebt thuis een computer of laptop (Arduino werkt niet op een iPad) waarop je de gratis Arduino software hebt geïnstalleerd, of je hebt er rekening mee gehouden dat je een paar uur per week op school op een computer kan werken.
+
+
 ## Stap 1: Circuit
 
-In deze map zet je een tekening van je circuit.
+-[ ] Je weet welke sensoren en actuatoren je wilt gebruiken.
+-[ ] Je hebt een schema getekend van je ontwerp, waaruit blijkt hoe alles aangesloten moet worden (bij een project waar de hardware al klaar is beschrijf je welke sensoren en actuatoren op welke pinnen zijn aangesloten). Dit sla je op in GitHub.
+-[ ] Je hebt je circuit in elkaar gezet (bij een project waar de hardware al klaar is is dit niet nodig).
 
 Het circuit is een aansluitschema, je kunt daarop zien welke componenten je gebruikt en op welke pinnen van de arduino die zijn aangesloten. Als je in je Arduino gebruik maakt van een kant en klaar circuit, dan kun je in plaats van een tekening ook een tabel geven waarin staat aan welke pinnen sensoren en actuatoren zitten die je gaat gebruiken.
 
@@ -15,14 +23,17 @@ Je kunt een circuit bijvoorbeeld als volgt maken
 
 
 ## Stap 2: Test Code
+[ ] Je hebt code gemaakt waarmee je kunt testen dat alle onderdelen op je circuit goed werken. Dit sla je op in GitHub.
 
-In deze map zet je de test-code (het .ino bestand) voor je circuit. De naam van een .ino bestand mag geen spaties bevatten en het .ino bestand moet in een map staan met dezelfde naam.
+In de map voor deze stap zet je de test-code (het .ino bestand) voor je circuit. De naam van een .ino bestand mag geen spaties bevatten en het .ino bestand moet in een map staan met dezelfde naam.
 
 De test-code is een ander programma dan je eindcode. De testcode laat snel zien dat alles werkt wat op je Arduino is aangesloten. Door de test-code in je Arduino te zetten kun je snel zien of je Arduino-circuit nog heel is.
 
 De voorbeeldcode in deze repo is een goed begin van testcode. Je kunt die zelf afmaken en in deze map zetten.
 
 ## Stap 3: Toestandsdiagram 
+- [ ] Je hebt een toestandsdiagram gemaakt. Dit sla je op in GitHub.
+- [ ] Je hebt je docent gevraagd om feedback over je toestandsdiagram. De feedback heb je verwerkt. Het uiteindelijke resultaat sla je weer op in GitHub.
 
 In deze map zet je een tekening van je toestandsdiagram.
 
@@ -33,9 +44,11 @@ Je kunt een toestandsdiagram bijvoorbeeld als volgt maken
 
 ## Stap 4: Project Code
 
-In deze map zet je de Arduino-code (het .ino bestand) van je project. De naam van een .ino bestand mag geen spaties bevatten en het .ino bestand moet in een map staan met dezelfde naam.
+- [ ] Je hebt het toestandsdiagram in code omgezet, zodat alle toestanden doorlopen kunnen worden met jouw circuit. Daarbij heb je het door de docent aangeleverde projectcode als startpunt gebruikt. Voor projecten waar geen startcode is sluit je aan bij wat je in de les geleerd hebt over toestandsdiagrammencode. Nog niet alle onderdelen van je apparaat hoeven het te doen, zolang alle toestanden maar doorlopen kunnen worden. De laatste versie van je code sla je steeds op op GitHub.
+- [ ]	Je hebt de code van je toestandsdiagram uitgebreid, zodat je project het doet. De laatste versie van je code sla je steeds op op GitHub.
+- [ ]	Je hebt je ontwerp uitgebreid met extra ideeën en deze heb je verwerkt in je aansluitschema (als je extra Arduino-onderdelen hebt toegevoegd) en in je code. De laatste versie van je code sla je steeds op op GitHub.
 
-De voorbeeldcode is een goede basis om mee te beginnen. Telkens als je iets hebt toegevoegd aan je code, dan zet je dat in deze map. 
+In de map voor deze stap zet je de Arduino-code (het .ino bestand) van je project. De naam van een .ino bestand mag geen spaties bevatten en het .ino bestand moet in een map staan met dezelfde naam.
 
 ## Stap 5: Video
 In deze map zet je een video die de werking van je project demonstreert.
