@@ -72,4 +72,10 @@ Tip: Je kunt meerdere keren inleveren. Zet enkele dagen voor de deadline alvast 
 - In de map "voorbeeldcode" van deze repo vind je documentatie en voorbeeldcode voor de projecten waaruit je kunt kiezen.
 - In de Arduino Language Reference vind je een beschrijving van opdrachten in de Arduino-taal <br>
 https://www.arduino.cc/reference/en/
+- Hoe je het display uit je het arduino-bakje gebruikt vind je hier: <br>
+https://emmauscollege.github.io/informatica/robot/how-to-display.html
+- Hoe je de passive-speaker uit het arduino-bakje gebruikt vind je hier: <br>
+https://www.arduino.cc/en/Tutorial/BuiltInExamples/toneMelody
+- Hoe je een knop, led, potmeter, servo en ultrasoon afstandssensor uit het arduino-bakje gebruikt vind je hier: <br>
+https://arduino-lessen.nl/
 
