@@ -1,5 +1,15 @@
-# 5HV-arduino-template
-In deze repo bewaar je alle bestanden die je maakt voor de opdracht Arduino.
+Deze repo is onderdeel van het vak informatica op het Emmauscollege Rotterdam.
+
+In de inlevermap van deze repo bewaar je alle bestanden die je maakt voor de [opdracht Robots](https://informatica.emmauscollege.nl/).
+
+## *zet hier welke robot je gekozen hebt*
+
+*zet hier een korte beschrijving van hoe je robot werkt*
+
+## Planning
+Werk de planning af van boven naar beneden<br>
+Vul de planning aan en stel bij terwijl je aan de opdracht werkt
+Geef aan met [x] welke onderdelen af zijn
 
 ## Stap 1: Starten
 - [ ]	Je hebt je GitHub-inlognaam aan de docent doorgegeven, zodat die een Github-repo kan aanmaken.
