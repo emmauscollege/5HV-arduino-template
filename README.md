@@ -42,21 +42,6 @@ Je kunt een toestandsdiagram bijvoorbeeld als volgt maken
 
 Het is een video met geluid (uitleg tijdens de demonstratie) in .mp4 of .mov formaat van maximaal 20MB of .txt bestand met link naar youtube. De video duurt maximaal 2 minuten.
 
-## Inleveren
-
-Je levert in door in de inlevermap je bestanden te zetten:
-1.	Een toestandsdiagram van je apparaat (.pdf of .jpg bestand).
-4.	De gebruikte code (.ino bestand), inclusief Nederlandstalig commentaar. Als je stukjes code hebt overgenomen, dan staat erbij waar je het vandaan hebt.
-5.	Een video met geluid (.mp4 of .mov van maximaal 50MB of .txt bestand met link naar youtube, maximaal 2 minuten) waarin je je apparaat demonstreert.
-
-Ruim de mappen op voor de inleverdatum, zodat er geen oude bestanden meer in staan. Zorg voor logische bestandsnamen.
-
-De naam van een .ino bestand mag geen spaties bevatten en het .ino bestand moet in een map staan met dezelfde naam.
-
-Je levert uiterlijk in op de datum die in de studiewijzer staat.
-
-Tip: Je kunt meerdere keren inleveren. Zet enkele dagen voor de deadline alvast een werkende versie in GitHub die bijna af is. Op die manier voorkom je dat er door onverwachte problemen een niet-werkende versie wordt beoordeeld.
-
 ## Documentatie
 - In de map "voorbeeldcode" van deze repo vind je documentatie en voorbeeldcode voor de projecten waaruit je kunt kiezen.
 - In de Arduino Language Reference vind je een beschrijving van opdrachten in de Arduino-taal <br>
