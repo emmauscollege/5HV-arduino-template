@@ -2,20 +2,26 @@
    Alphabot Startcode
    met toestansdiagrammen
    Emmauscollege
-   v20221001GEE
+   v20221003GEE
+   Met dank aan de documentatie op: 
+   https://www.waveshare.com/wiki/AlphaBot2-Ar
  *****************************************/
-
+ 
 /*****************************************
    variabelen 
  *****************************************/
 // gebruikte pinnen
-const int pin1Rood   = 28; // pin van stoplicht 1 rood
-const int pin1Oranje = 30; // pin van stoplicht 1 oranje
-const int pin1Groen  = 32; // pin van stoplicht 1 groen
+const int pinPWMA = 6;           //Left Motor Speed pin (ENA)
+const int pinAIN2 = A0;          //Motor-L forward (IN2).
+const int pinAIN1 = A1;          //Motor-L backward (IN1)
+const int pinPWMB = 5;           //Right Motor Speed pin (ENB)
+const int pinBIN1 = A2;          //Motor-R forward (IN3)
+const int pinBIN2 = A3;          //Motor-R backward (IN4)
+const int pinECHO = 2;           //ultrasonic distance sensor echo pin
+const int pinTRIG = 3;           //ultrasonic distance sensor trigger pin
 
 // variabelen om waarden van sensoren en actuatoren te onthouden
 int afstandVoor = 0;
-int knop8 = 0;
 
 // variabelen voor de toestanden
 const int VOORUIT = 1; // rij vooruit
@@ -27,6 +33,20 @@ unsigned long toestandStartTijd = 0;
    functies 
  *****************************************/
 
+// Measure the distance in centimeter with the ultrasonic distance sensor
+int utrasonicDistance(int pinTrigger, int pinEcho)         
+{
+  float distance_ms = 0;
+  int distance_cm = 0;
+  digitalWrite(pinTrigger, LOW);   // set trig pin low 2μs
+  delayMicroseconds(2);
+  digitalWrite(pinTrigger, HIGH);  // set trig pin 10μs , at last 10us 
+  delayMicroseconds(10);
+  digitalWrite(pinTrigger, LOW);   // set trig pin low
+  distance_ms = pulseIn(pinEcho, HIGH);  // Read echo pin high level time(μs)
+  distance_cm = distance_ms / 58;       //cm = μs /58       
+  return distance_cm;
+}
 
 /*****************************************
    setup() en loop()
@@ -37,17 +57,21 @@ void setup() {                                      // deze functie wordt 1x uit
   Serial.begin(9600);
   Serial.println("Alphabot start");
 
-  // zet pinmodes voor
-  pinMode(pin1Rood, OUTPUT);
-  pinMode(pin1Oranje, OUTPUT);
-  pinMode(pin1Groen, OUTPUT);
-  
+  // zet pinmodes
+  pinMode(pinECHO, INPUT);    // ultrasonic echo input pin
+  pinMode(pinTRIG, OUTPUT);   // ultrasonic trigger output pin 
+  pinMode(pinPWMA, OUTPUT);   // linker motor snelheid analog output               
+  pinMode(pinAIN2, OUTPUT);   // linker motor richting digital output   
+  pinMode(pinAIN1, OUTPUT);   // linker motor richting digital output 
+  pinMode(pinPWMB, OUTPUT);   // rechter motor snelheid analog output   
+  pinMode(pinAIN1, OUTPUT);   // rechter motor richting digital output  
+  pinMode(pinAIN2, OUTPUT);   // rechter motor richting digital output
 }
 
 void loop() {                                       // deze functie wordt oneindig herhaalt
   // lees sensorwaarden
-  afstandVoor = digitalRead(pin7Knop);
-  Serial.print("afstandVoor: ");Serial.println(afstandVoor);
+  afstandVoor = utrasonicDistance(pinTRIG, pinECHO);
+  Serial.print("afstandVoor: ");Serial.print(afstandVoor);Serial.println(" cm");
 
   // bepaal toestand
   if (toestand == VOORUIT) {                        // als toestand VOORUIT is
@@ -70,14 +94,22 @@ void loop() {                                       // deze functie wordt oneind
 
   // zet actuatoren zoals hoort bij de toestand
   if (toestand == VOORUIT) {
-    for (int i = 1; i <= 8; i = i + 1) {
-      stoplicht(i, ROOD);
-    }
+    int Speed = 100; // snelheid 0 t/m 255
+    analogWrite(pinPWMA,Speed); // snelheid linkermotor
+    analogWrite(pinPWMB,Speed); // snelheid rechtermotor
+    digitalWrite(pinAIN1,LOW);  // linker motor vooruit
+    digitalWrite(pinAIN2,HIGH); // linker motor vooruit
+    digitalWrite(pinBIN1,LOW);  // rechter motor vooruit 
+    digitalWrite(pinBIN2,HIGH); // rechter motor vooruit 
   }
   if (toestand == DRAAI) {
-    for (int i = 1; i <= 8; i = i + 1) {
-      stoplicht(i, GROEN);
-    }
+    int Speed = 50; // snelheid 0 t/m 255
+    analogWrite(pinPWMA,Speed); // snelheid linkermotor
+    analogWrite(pinPWMB,Speed); // snelheid rechtermotor
+    digitalWrite(pinAIN1,LOW);  // linker motor vooruit
+    digitalWrite(pinAIN2,HIGH); // linker motor vooruit
+    digitalWrite(pinBIN1,HIGH); // rechter motor achteruit  
+    digitalWrite(pinBIN2,LOW);  // rechter motor achteruit  
   }
 
   // vertraging om te zorgen dat berichten op de seriele monitor leesbaar blijven
