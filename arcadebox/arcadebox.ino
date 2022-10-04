@@ -20,10 +20,14 @@
    variabelen die je gebruikt maken
  *****************************************/
 // gebruikte pinnen
-const int pinLedA   = 13; // pin van LED voor speler 1
-const int pinLedB   = 12; // pin van LED voor speler 2
-const int pinKnopA  = 2; // pin van knop voor speler 1
-const int pinKnopB  = 3; // pin van knop voor speler 2
+const int pinLedBlauw   = 11; 
+const int pinLedGroen   = 5; 
+const int pinLedGeel    = 9; 
+const int pinLedWit     = 3; 
+const int pinKnopBlauw  = 10; 
+const int pinKnopGroen  = 6; 
+const int pinKnopGeel   = 8; 
+const int pinKnopWit    = 4; 
 
 // variabelen om waarden van sensoren en actuatoren te onthouden
 int knopA = 0;
@@ -65,23 +69,57 @@ void setup() {
   Serial.println("Game start");
 
   // zet pinmode voor leds
-  pinMode(pinLedA, OUTPUT);
-  pinMode(pinLedB, OUTPUT);
-
+  pinMode(pinLedBlauw, OUTPUT);
+  pinMode(pinLedGroen, OUTPUT);
+  pinMode(pinLedGeel, OUTPUT);
+  pinMode(pinLedWit, OUTPUT);
+  
   // zet pinmode voor knoppen
-  pinMode(pinKnopA, INPUT);
-  pinMode(pinKnopB, INPUT);
+  pinMode(pinKnopBlauw, INPUT);
+  pinMode(pinKnopGroen, INPUT);
+  pinMode(pinKnopGeel, INPUT);
+  pinMode(pinKnopWit, INPUT);
+  
+while(true) {
+  if(digitalRead(pinKnopBlauw) == HIGH) {
+    digitalWrite(pinLedBlauw, HIGH);
+  } else {
+    digitalWrite(pinLedBlauw, LOW);
+  }  
+  if(digitalRead(pinKnopGroen) == HIGH) {
+    digitalWrite(pinLedGroen, HIGH);
+  } else {
+    digitalWrite(pinLedGroen, LOW);
+  }  
+  if(digitalRead(pinKnopGeel) == HIGH) {
+    digitalWrite(pinLedGeel, HIGH);
+  } else {
+    digitalWrite(pinLedGeel, LOW);
+  }  
+  if(digitalRead(pinKnopWit) == HIGH) {
+    digitalWrite(pinLedWit, HIGH);
+  } else {
+    digitalWrite(pinLedWit, LOW);
+  }  
+ }
+
+
+  
+  digitalWrite(pinLedGroen, HIGH);
+  digitalWrite(pinLedGeel, HIGH);
+  digitalWrite(pinLedWit, HIGH);
 }
 
 void loop() {
+  delay(10000);
   // lees sensorwaarden
-  knopA = digitalRead(pinKnopA);
-  knopB = digitalRead(pinKnopB);
+  knopA = digitalRead(pinKnopBlauw);
+  knopB = digitalRead(pinKnopGroen);
 
   // bepaal toestand
   if (toestand == TELAF) {
     telafLoop();
-    if (millis() - toestandStartTijd > 2000) { // 2 seconden voorbij
+    if (millis() - toestandStartTijd > 10000) { // 2 seconden voorbij
       toestandStartTijd = millis();
       toestand = SPEEL;
       Serial.println("Nieuwe toestand: SPEEL");
@@ -104,6 +142,10 @@ void loop() {
       Serial.println("Nieuwe toestand: TELAF");
     }
   }
+
+  // zet actuatoren
+  digitalWrite(pinLedBlauw, HIGH);
+  
 
   // kleine vertraging, 100 keer per seconde loopen is genoeg
   delay(10);
