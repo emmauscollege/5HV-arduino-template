@@ -1,8 +1,8 @@
 /*****************************************
-   Game Startcode
+   Arcadebox Startcode
    met toestansdiagrammen
    Emmauscollege
-   v20201114GEE
+   v20221003GEE
  *****************************************/
 
 /*****************************************
@@ -24,14 +24,19 @@ const int pinLedBlauw   = 11;
 const int pinLedGroen   = 5; 
 const int pinLedGeel    = 9; 
 const int pinLedWit     = 3; 
-const int pinKnopBlauw  = 10; 
-const int pinKnopGroen  = 6; 
-const int pinKnopGeel   = 8; 
-const int pinKnopWit    = 4; 
+const int pinKnopBlauw  = 6; 
+const int pinKnopGroen  = 10; 
+const int pinKnopGeel   = 4; 
+const int pinKnopWit    = 8; 
+const int pinSpeaker    = 12;
+rgb_lcd lcd; // maak variabele lcd van het type rgb_lcd om het display te gebruiken
 
 // variabelen om waarden van sensoren en actuatoren te onthouden
-int knopA = 0;
-int knopB = 0;
+int waardeKnopBlauw = HIGH;
+int waardeKnopGroen = HIGH;
+int waardeKnopGeel  = HIGH;
+int waardeKnopWit   = HIGH;
+long int startTijd = millis();
 
 // variabelen voor de toestanden
 const int TELAF = 1; // tel af tot spel start
@@ -43,21 +48,6 @@ unsigned long toestandStartTijd = 0;
 /*****************************************
    functies die je gebruikt maken
  *****************************************/
-// code die steeds wordt uitgevoerd in toestand TELAF
-void telafLoop() {
-  // tel af
-}
-
-// code die steeds wordt uitgevoerd in toestand SPEEL
-void speelLoop() {
-  // speel spel
-}
-
-// code die steeds wordt uitgevoerd in toestand SPEEL
-void winLoop() {
-  // toon wie gewonnen heeft
-}
-
 
 /*****************************************
    setup() en loop()
@@ -66,7 +56,7 @@ void winLoop() {
 void setup() {
   // enable console en stuur opstartbericht
   Serial.begin(9600);
-  Serial.println("Game start");
+  Serial.println("Arcade start");
 
   // zet pinmode voor leds
   pinMode(pinLedBlauw, OUTPUT);
@@ -75,77 +65,76 @@ void setup() {
   pinMode(pinLedWit, OUTPUT);
   
   // zet pinmode voor knoppen
-  pinMode(pinKnopBlauw, INPUT);
-  pinMode(pinKnopGroen, INPUT);
-  pinMode(pinKnopGeel, INPUT);
-  pinMode(pinKnopWit, INPUT);
-  
-while(true) {
-  if(digitalRead(pinKnopBlauw) == HIGH) {
-    digitalWrite(pinLedBlauw, HIGH);
-  } else {
-    digitalWrite(pinLedBlauw, LOW);
-  }  
-  if(digitalRead(pinKnopGroen) == HIGH) {
-    digitalWrite(pinLedGroen, HIGH);
-  } else {
-    digitalWrite(pinLedGroen, LOW);
-  }  
-  if(digitalRead(pinKnopGeel) == HIGH) {
-    digitalWrite(pinLedGeel, HIGH);
-  } else {
-    digitalWrite(pinLedGeel, LOW);
-  }  
-  if(digitalRead(pinKnopWit) == HIGH) {
-    digitalWrite(pinLedWit, HIGH);
-  } else {
-    digitalWrite(pinLedWit, LOW);
-  }  
- }
+  // de knoppen werken met een ingebouwde pullup weerstand in de arduino
+  // de knop ingedrukt geeft HIGH, de knop los geeft LOW
+  pinMode(pinKnopBlauw, INPUT_PULLUP);
+  pinMode(pinKnopGroen, INPUT_PULLUP);
+  pinMode(pinKnopGeel, INPUT_PULLUP);
+  pinMode(pinKnopWit, INPUT_PULLUP);
 
+  // zet pinmode voor speaker
+  pinMode(pinSpeaker, OUTPUT);
 
+  // init display
+  lcd.begin(16,2);
   
-  digitalWrite(pinLedGroen, HIGH);
-  digitalWrite(pinLedGeel, HIGH);
-  digitalWrite(pinLedWit, HIGH);
 }
 
 void loop() {
-  delay(10000);
   // lees sensorwaarden
-  knopA = digitalRead(pinKnopBlauw);
-  knopB = digitalRead(pinKnopGroen);
+  waardeKnopBlauw = digitalRead(pinKnopBlauw);
+  waardeKnopGroen = digitalRead(pinKnopGroen);
+  waardeKnopGeel = digitalRead(pinKnopGeel);
+  waardeKnopWit = digitalRead(pinKnopWit);
 
   // bepaal toestand
   if (toestand == TELAF) {
-    telafLoop();
-    if (millis() - toestandStartTijd > 10000) { // 2 seconden voorbij
-      toestandStartTijd = millis();
+    if (millis() - startTijd > 2000) { // 2 seconden voorbij
+      startTijd = millis();
       toestand = SPEEL;
       Serial.println("Nieuwe toestand: SPEEL");
     }
   }
   if (toestand == SPEEL) {
-    speelLoop();
-    if (millis() - toestandStartTijd > 5000) { // 5 seconden voorbij
-      toestandStartTijd = millis();
+    if (waardeKnopBlauw == LOW ||
+        waardeKnopGroen == LOW ||
+        waardeKnopGeel  == LOW ||
+        waardeKnopWit   == LOW   ) { // een knop ingedrukt
+      startTijd = millis();
       toestand = WIN;
       Serial.println("Nieuwe toestand: WIN");
     }
   }
   if (toestand == WIN) {
-    winLoop();
-    if (millis() - toestandStartTijd > 1000 &&  // 1 seconde voorbij en
-        knopA == HIGH && knopB == HIGH) {       // beide knoppen ingedrukt
-      toestandStartTijd = millis();
+    if (millis() - startTijd > 1000) { // 0,5 seconde voorbij
+      startTijd = millis();
       toestand = TELAF;
       Serial.println("Nieuwe toestand: TELAF");
     }
   }
 
   // zet actuatoren
-  digitalWrite(pinLedBlauw, HIGH);
-  
+  if (toestand == TELAF) {
+    digitalWrite(pinLedBlauw, HIGH);
+    digitalWrite(pinLedGroen, HIGH);
+    digitalWrite(pinLedGeel , HIGH);
+    digitalWrite(pinLedWit  , HIGH); 
+    lcd.setCursor(0, 0);
+    lcd.print("TELAF:wacht    ");          
+  }
+  if (toestand == SPEEL) {
+    digitalWrite(pinLedBlauw, LOW);
+    digitalWrite(pinLedGroen, LOW);
+    digitalWrite(pinLedGeel , LOW);
+    digitalWrite(pinLedWit  , LOW); 
+    lcd.setCursor(0, 0);
+    lcd.print("SPEEL:druk knop");    
+  }
+  if (toestand == WIN) {
+    tone(pinSpeaker, 500, 100); // speaker piept 100ms op 500hz, maar programma gaat door terwijl speaker piept
+    lcd.setCursor(0, 0);
+    lcd.print("WIN:n-joy sound");   
+  }
 
   // kleine vertraging, 100 keer per seconde loopen is genoeg
   delay(10);
