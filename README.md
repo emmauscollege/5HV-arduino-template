@@ -2,7 +2,7 @@ Deze repo is onderdeel van het vak informatica op het Emmauscollege Rotterdam.
 
 In de inlevermap van deze repo bewaar je alle bestanden die je maakt voor de [opdracht Robots](https://informatica.emmauscollege.nl/).
 
-## *zet hier welke robot je gekozen hebt*
+## *zet hier welk apparaat je gekozen hebt*
 
 *zet hier een korte beschrijving van hoe je robot werkt*
 
@@ -20,6 +20,7 @@ Geef aan met [x] welke onderdelen af zijn
 ## Stap 2: Toestandsdiagram 
 - [ ] Je hebt een toestandsdiagram gemaakt. Dit sla je op in GitHub.
 - [ ] Je hebt je docent gevraagd om feedback over je toestandsdiagram. De feedback heb je verwerkt. Het uiteindelijke resultaat sla je weer op in GitHub.
+- [ ] Je hebt aangegeven welke sensoren en actuatoren je gaat gebruiken, dit kan in een kort lijstje op hetzelfde blad als je toestandsdiagram.
 
 In deze map zet je een tekening van je toestandsdiagram.
 
@@ -30,8 +31,8 @@ Je kunt een toestandsdiagram bijvoorbeeld als volgt maken
 
 ## Stap 3: Code
 
-- [ ] Je hebt het toestandsdiagram in code omgezet, zodat alle toestanden doorlopen kunnen worden met jouw circuit. Daarbij heb je het door de docent aangeleverde projectcode als startpunt gebruikt. Nog niet alle onderdelen van je apparaat hoeven het te doen, zolang alle toestanden maar doorlopen kunnen worden. De laatste versie van je code sla je steeds op op GitHub.
-- [ ]	Je hebt de code van je toestandsdiagram uitgebreid, zodat alle onderdelen van je project het doen. De laatste versie van je code sla je steeds op op GitHub.
+- [ ] Je hebt het toestandsdiagram in code omgezet, zodat alle toestanden doorlopen kunnen worden met jouw circuit. Daarbij heb je het door de docent aangeleverde projectcode als startpunt gebruikt. Nog niet alle sensoren of actuatoren van je apparaat hoeven het te doen, zolang alle toestanden maar doorlopen kunnen worden. De laatste versie van je code sla je steeds op op GitHub.
+- [ ]	Je hebt de code van je toestandsdiagram uitgebreid, zodat alle sensoren en actuatoren van je project het doen. Je apparaat werkt nu volledig en zoals beschreven in het toestandsdiagram. De laatste versie van je code sla je steeds op op GitHub.
 
 ## Stap 4: Uitbreidingen
 
@@ -43,13 +44,7 @@ Je kunt een toestandsdiagram bijvoorbeeld als volgt maken
 Het is een video met geluid (uitleg tijdens de demonstratie) in .mp4 of .mov formaat van maximaal 20MB of .txt bestand met link naar youtube. De video duurt maximaal 2 minuten.
 
 ## Documentatie
-- In de map "voorbeeldcode" van deze repo vind je documentatie en voorbeeldcode voor de projecten waaruit je kunt kiezen.
+- Elke apparaat heeft een map in deze repo waarin je startcode (.ino bestand) kunt vinden. Bij sommige apparaten is er ook documentatie (README.md) of libraries (.zip) aanwezig.
 - In de Arduino Language Reference vind je een beschrijving van opdrachten in de Arduino-taal <br>
 https://www.arduino.cc/reference/en/
-- Hoe je het display uit je het arduino-bakje gebruikt vind je hier: <br>
-https://emmauscollege.github.io/informatica/robot/how-to-display.html
-- Hoe je de passive-speaker uit het arduino-bakje gebruikt vind je hier: <br>
-https://www.arduino.cc/en/Tutorial/BuiltInExamples/toneMelody
-- Hoe je een knop, led, potmeter, servo en ultrasoon afstandssensor uit het arduino-bakje gebruikt vind je hier: <br>
-https://arduino-lessen.nl/
 
