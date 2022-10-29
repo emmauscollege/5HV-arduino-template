@@ -77,8 +77,10 @@ void setup() {
   tello.sendTelloCtrlMsg("takeoff"); // opstijgen, pas als de drone opgestegen is gaat het programma naar de volgende regel
   
   tt_matrix.SetAllPWM((uint8_t *)matrix_b2); // zet 2 op matrix
-  tello.sendTelloCtrlMsg("left 30"); // wat niet werkt: tello.Left(30); => later uitzoeken
-  
+  tello.sendTelloCtrlMsg("left 30"); 
+  // tello.Left(30); delay(10000) werkt ook, maar het programma wacht dan altijd 10 sec, tenzij je zelf de response van tello uitleest
+  // Serial1.printf("[TELLO] left 30"); delay (10000) zou ook moeten werken (niet getest),  maar het programma wacht dan altijd 10 sec, tenzij je zelf de response van tello uitleest
+
   tt_matrix.SetAllPWM((uint8_t *)matrix_b3); // zet 3 op matrix
   // tello.sendTelloCtrlMsg("flip l"); // flip is draai over de kop, niet nuttig, wel leuk
   
