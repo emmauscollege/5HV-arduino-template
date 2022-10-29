@@ -6,15 +6,15 @@ In de toestand VOORUIT rijdt de alphabot vooruit tot de afstand van de sensor vo
 
 ## Veel gestelde vragen over de alphabot
 
-# Hoe verbind ik de alphabot met de computer?
+### Hoe verbind ik de alphabot met de computer?
 Zet de schakelaar onderop de alphabot op "off".
 Sluit de computer met een usb-kabel aan op de bovenste usb-aansluiting van de alpabot. 
 Je kunt de Arduino IDE gebruiken om je alphabot te programmeren.
 
-# Hoe laad ik de alphabot op?
+### Hoe laad ik de alphabot op?
 Gebruik de bovenste usb-aansluiting op de alpabot en sluit die aan op een oplader of een usb-aansluiting van een computer.
 
-# Hoe kan ik mijn alphabot laten rijden zonder kabels eraan?
+### Hoe kan ik mijn alphabot laten rijden zonder kabels eraan?
 Haal de usb-kabels van de alphabot. 
 Zet de schakelaar onderop de alphabot op "on".
 
