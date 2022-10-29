@@ -1,6 +1,6 @@
 Deze repo is onderdeel van het vak informatica op het Emmauscollege Rotterdam.
 
-In de inlevermap van deze repo bewaar je alle bestanden die je maakt voor de [opdracht Robots](https://informatica.emmauscollege.nl/).
+In deze repo bewaar je alle bestanden die je maakt voor de [opdracht Robots](https://informatica.emmauscollege.nl/).
 
 ## *zet hier welk apparaat je gekozen hebt*
 
