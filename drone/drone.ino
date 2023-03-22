@@ -80,7 +80,8 @@ void setup() {
   tello.sendTelloCtrlMsg("left 30"); 
   // tello.Left(30); delay(10000) werkt ook, maar het programma wacht dan altijd 10 sec, tenzij je zelf de response van tello uitleest
   // Serial1.printf("[TELLO] left 30"); delay (10000) zou ook moeten werken (niet getest),  maar het programma wacht dan altijd 10 sec, tenzij je zelf de response van tello uitleest
-  // beter (niet getest):
+  
+  // beter (niet getest) OP DEZE MANIER MOET HET, ANDERS GEEN VOLDOENDE:
   // void RMTT_Protocol::SendCMD(char *cmd) => voor verzenden commando zonder wachten
   // String RMTT_Protocol::getTelloResponseString(uint32_t timeout) => lezen van response (meestal "ok"), return "timeout" als nog niet klaar
       
