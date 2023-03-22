@@ -1,6 +1,6 @@
 /*
  * Startcode
- * 2022-07-10 GEE
+ * 2022-07-10 GEE, updated 2023-03-22 GEE
  * Status: work in progress
  * 
  * Gebaseerd op de voorbeelden die in de library van de drone worden meegeleverd
@@ -77,14 +77,26 @@ void setup() {
   tello.sendTelloCtrlMsg("takeoff"); // opstijgen, pas als de drone opgestegen is gaat het programma naar de volgende regel
   
   tt_matrix.SetAllPWM((uint8_t *)matrix_b2); // zet 2 op matrix
-  tello.sendTelloCtrlMsg("left 30"); 
-  // tello.Left(30); delay(10000) werkt ook, maar het programma wacht dan altijd 10 sec, tenzij je zelf de response van tello uitleest
-  // Serial1.printf("[TELLO] left 30"); delay (10000) zou ook moeten werken (niet getest),  maar het programma wacht dan altijd 10 sec, tenzij je zelf de response van tello uitleest
+  // tello.sendTelloCtrlMsg("left 30"); zorgt dat de drone het commando uitvoert en daarna pas met de volgende opdracht verder gaat
   
-  // beter (niet getest) OP DEZE MANIER MOET HET, ANDERS GEEN VOLDOENDE:
-  // void RMTT_Protocol::SendCMD(char *cmd) => voor verzenden commando zonder wachten
-  // String RMTT_Protocol::getTelloResponseString(uint32_t timeout) => lezen van response (meestal "ok"), return "timeout" als nog niet klaar
-      
+  // tello.Left(30); delay(10000) werkt ook, maar het programma wacht dan altijd 10 sec, tenzij je zelf de response van tello uitleest
+ 
+  // Serial1.printf("[TELLO] left 30"); delay (10000) werkt ook,  maar het programma wacht dan altijd 10 sec, tenzij je zelf de response van tello uitleest
+  
+  // void RMTT_Protocol::SendCMD(char *cmd) => voor verzenden commando zonder wachten, 
+  // helaas is dit een private method waardoor we die niet kunnen aanroepen
+  // we doen het daarom kort door de bocht
+  // Serial1.printf("[TELLO] %s", "left 30");
+  // daarna herhaaldelijk het antwoord van de drone bekijken tot de drone klaar is
+  
+  // DUS OP DEZE MANIER MOET HET, ANDERS GEEN VOLDOENDE:
+  Serial1.printf("[TELLO] %s", "left 30");
+  String response = "timeout";
+  while(response == "timeout") {
+    response = tello.getTelloResponseString(100); // timeout 100 ms
+  }
+  // string kan ok of error zijn, we gaan uit van ok
+  
   tt_matrix.SetAllPWM((uint8_t *)matrix_b3); // zet 3 op matrix
   // tello.sendTelloCtrlMsg("flip l"); // flip is draai over de kop, niet nuttig, wel leuk
   
