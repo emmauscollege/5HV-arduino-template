@@ -92,3 +92,8 @@ https://osxdaily.com/2021/07/19/fix-xcrun-error-invalid-active-developer-path-er
 - Als er geen verbinding is, terwijl je programma de Tello wel zou moeten laten vliegen: zet de stand van de schakelaar op de RTMM omlaag op het telefoon icoontje als je dat eerder vergeten was, verwijder de kabel tussen PC en drone, zet de tello uit en weer aan met de rode knop aan de zijkant van de tello. Wacht ongeveer 10 seconden, het ledje zou nu paars moeten knipperen.
 - Druk op het knopje aan de zijkant van de RMTT, je Tello gaat vliegen nadat je deze knop hebt ingedrukt.
 
+## Startcode voor je eigen programma
+De startcode werkt met drie toestanden: OPSTIJGEN, DRAAIEN, LANDENN.
+De drone start met OPSTIJGEN (nadat je het knopje op de RMTT hebt ingedrukt). Als hij opgestegen is dan begint hij met draaien (toestand DRAAIEN), totdat de afstandssensor boven het display een object ziet op minder dan 50 cm. Dan landt de drone (toestand LANDEN).
+
+[toestandsdiagram](drone.drawio.png)

@@ -4,6 +4,8 @@
 De startcode werkt met twee toestanden: VOORUIT en DRAAI.
 In de toestand VOORUIT rijdt de alphabot vooruit tot de afstand van de sensor voorop kleiner dan 50 centimeter is. Daarna gaat hij naar de toestand DRAAI. In de toestand DRAAI draait hij 1 seconde rond. Daarna gaat hij naar de toestand VOORUIT. 
 
+[toestandsdiagram](alphabot.drawio.png)
+
 ## Veel gestelde vragen over de alphabot
 
 ### Hoe verbind ik de alphabot met de computer?
