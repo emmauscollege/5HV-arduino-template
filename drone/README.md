@@ -72,13 +72,6 @@ Hard resetting via RTS pin...
 - Als je de Tello aanzet met de rode knop aan de zijkant, dan krijgt de RMTT stroom uit de batterij in de Tello. Je kunt de kabel met de computer dan eruit halen, terwijl het programma draait. 
 - Als je RMTT stopt op het moment dat je de stekker van de computer eruit trekt, dan staat de Tello uit of is de batterij van de Tello leeg. Het rode lichtje op de Tello knippert rood als de batterij bijna op is. De RMTT onthoudt het programma dat je erin hebt gestopt, ook als je de stroom eraf is geweest. 
 
-## Foutmeldingen oplossen
-- Ik krijg in de Arduino IDE tijdens het compileren de foutmelding<br>
-"xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun"<br>
-Een hulpprogramma dat gebruikt wordt kan niet worden gevonden op je Mac. Hoe je dit installeert staat hier:<br>
-https://osxdaily.com/2021/07/19/fix-xcrun-error-invalid-active-developer-path-error-terminal-mac/
-
-
 ## Je drone laten vliegen met een programma
 - Zet je drone op een veilige plaats, hij gaat ongeveer een meter de lucht in en landt dan weer.
 - Zet de stand van de schakelaar op de RTMM omlaag, op het telefoon icoontje
@@ -97,3 +90,18 @@ De startcode werkt met drie toestanden: OPSTIJGEN, DRAAIEN, LANDENN.
 De drone start met OPSTIJGEN (nadat je het knopje op de RMTT hebt ingedrukt). Als hij opgestegen is dan begint hij met draaien (toestand DRAAIEN), totdat de afstandssensor boven het display een object ziet op minder dan 50 cm. Dan landt de drone (toestand LANDEN).
 
 [toestandsdiagram](drone.drawio.png)
+
+## Veelgestelde vragen
+- Ik krijg in de Arduino IDE tijdens het compileren de foutmelding<br>
+"xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun"<br>
+Een hulpprogramma dat gebruikt wordt kan niet worden gevonden op je Mac. Hoe je dit installeert staat hier:<br>
+https://osxdaily.com/2021/07/19/fix-xcrun-error-invalid-active-developer-path-error-terminal-mac/
+
+- Hoe kan ik de serial monitor uitlezen tijdens het vliegen?
+- Dit is lastig, omdat de usb kabel aan de drone moet blijven zitten tijdens het vliegen om de serial monitor uit te lezen.<br>
+Je kunt het proberen met de volgende oplossing (niet getest):<br>
+[https://randomnerdtutorials.com/esp32-webserial-library/]
+(https://randomnerdtutorials.com/esp32-webserial-library/)<br>
+[https://techtutorialsx.com/2021/01/09/esp32-arduino-webserial/]
+(https://techtutorialsx.com/2021/01/09/esp32-arduino-webserial/)
+
