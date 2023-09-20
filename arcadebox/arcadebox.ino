@@ -1,8 +1,8 @@
 /*****************************************
-   Arcadebox Startcode
-   met toestansdiagrammen
+   Arcadebox startcode
+   met toestandsdiagrammen
    Emmauscollege
-   v20221003GEE
+   v20220920CAM
  *****************************************/
 
 /*****************************************
@@ -14,7 +14,7 @@
 
  *****************************************/
 #include <Wire.h>
-#include "rgb_lcd.h"
+#include "src/Grove_LCD_RGB_Backlight/rgb_lcd.h"
 
 /*****************************************
    variabelen die je gebruikt maken
@@ -29,6 +29,8 @@ const int pinKnopGroen  = 10;
 const int pinKnopGeel   = 4; 
 const int pinKnopWit    = 8; 
 const int pinSpeaker    = 12;
+
+// object voor LCD-scherm
 rgb_lcd lcd; // maak variabele lcd van het type rgb_lcd om het display te gebruiken
 
 // variabelen om waarden van sensoren en actuatoren te onthouden
@@ -36,7 +38,7 @@ int waardeKnopBlauw = HIGH;
 int waardeKnopGroen = HIGH;
 int waardeKnopGeel  = HIGH;
 int waardeKnopWit   = HIGH;
-long int startTijd = millis();
+long int startTijd  = millis();
 
 // variabelen voor de toestanden
 const int TELAF = 1; // tel af tot spel start
@@ -46,7 +48,7 @@ int toestand = TELAF;
 unsigned long toestandStartTijd = 0;
 
 /*****************************************
-   functies die je gebruikt maken
+   functies die je gebruikt
  *****************************************/
 
 /*****************************************
