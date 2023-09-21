@@ -1,8 +1,8 @@
 /*****************************************
    Alphabot Startcode
-   met toestansdiagrammen
+   met toestandsdiagrammen
    Emmauscollege
-   v20221003GEE
+   v20230921CAM
    Met dank aan de documentatie op: 
    https://www.waveshare.com/wiki/AlphaBot2-Ar
  *****************************************/
