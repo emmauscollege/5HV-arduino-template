@@ -2,11 +2,11 @@
    Stoplicht Startcode
    met toestansdiagrammen
    Emmauscollege
-   v20201114GEE
+   v20230921CAM
  *****************************************/
 
 /*****************************************
-   variabelen die je gebruikt maken
+   variabelen
  *****************************************/
 // gebruikte pinnen
 const int pin1Rood   = 28; // pin van stoplicht 1 rood
@@ -52,7 +52,7 @@ int toestand = BORING;
 unsigned long toestandStartTijd = 0;
 
 /*****************************************
-   functies die je gebruikt maken
+   functies
  *****************************************/
 // geef kleuren naam, om je code leesbaarder te maken
 const int ROOD   = 1;

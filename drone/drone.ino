@@ -2,7 +2,7 @@
    Drone Startcode
    met toestansdiagrammen
    Emmauscollege
-   2022/10/03-2023/08/29 GEE
+   v20230921CAM
  *****************************************/
 
 /*****************************************
@@ -13,9 +13,8 @@
 
  *****************************************/
 
-#include <RMTT_Libs.h>
-
 #include <Wire.h>
+#include "src/RMTT_Libs/RMTT_Libs.h"
 
 
 /*****************************************
@@ -34,8 +33,8 @@ long int startTijd = millis();
 
 // variabelen voor de toestanden
 const int OPSTIJGEN = 1; // tel af tot spel start
-const int DRAAIEN = 2; // speel het spel
-const int LANDEN   = 3; // laat zien wie de winnaar is
+const int DRAAIEN   = 2; // speel het spel
+const int LANDEN    = 3; // laat zien wie de winnaar is
 int toestand = OPSTIJGEN;
 unsigned long toestandStartTijd = 0;
 

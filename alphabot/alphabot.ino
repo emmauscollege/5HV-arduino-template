@@ -1,6 +1,6 @@
 /*****************************************
    Alphabot Startcode
-   met toestandsdiagrammen
+   met toestansdiagrammen
    Emmauscollege
    v20230921CAM
    Met dank aan de documentatie op: 

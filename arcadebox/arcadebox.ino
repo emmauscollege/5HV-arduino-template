@@ -2,7 +2,7 @@
    Arcadebox startcode
    met toestandsdiagrammen
    Emmauscollege
-   v20220920CAM
+   v20230921CAM
  *****************************************/
 
 /*****************************************
@@ -17,7 +17,7 @@
 #include "src/Grove_LCD_RGB_Backlight/rgb_lcd.h"
 
 /*****************************************
-   variabelen die je gebruikt maken
+   variabelen
  *****************************************/
 // gebruikte pinnen
 const int pinLedBlauw   = 11; 
@@ -48,7 +48,7 @@ int toestand = TELAF;
 unsigned long toestandStartTijd = 0;
 
 /*****************************************
-   functies die je gebruikt
+   functies
  *****************************************/
 
 /*****************************************
