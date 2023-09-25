@@ -89,7 +89,7 @@ Hard resetting via RTS pin...
 De startcode werkt met drie toestanden: OPSTIJGEN, DRAAIEN, LANDENN.
 De drone start met OPSTIJGEN (nadat je het knopje op de RMTT hebt ingedrukt). Als hij opgestegen is dan begint hij met draaien (toestand DRAAIEN), totdat de afstandssensor boven het display een object ziet op minder dan 50 cm. Dan landt de drone (toestand LANDEN).
 
-[toestandsdiagram](drone.drawio.png)
+[toestandsdiagram](data/drone.drawio.png)
 
 ## Veelgestelde vragen
 - Ik krijg in de Arduino IDE tijdens het compileren de foutmelding<br>
