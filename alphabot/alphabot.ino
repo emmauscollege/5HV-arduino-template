@@ -2,7 +2,7 @@
    Alphabot Startcode
    met toestansdiagrammen
    Emmauscollege
-   v20221003GEE
+   v20230921CAM
    Met dank aan de documentatie op: 
    https://www.waveshare.com/wiki/AlphaBot2-Ar
  *****************************************/
@@ -25,7 +25,7 @@ int afstandVoor = 0;
 
 // variabelen voor de toestanden
 const int VOORUIT = 1; // rij vooruit
-const int DRAAI = 2; // draai
+const int DRAAI   = 2; // draai
 int toestand = VOORUIT;
 unsigned long toestandStartTijd = 0;
 
