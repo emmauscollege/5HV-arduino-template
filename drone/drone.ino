@@ -2,7 +2,7 @@
    Drone Startcode
    met toestansdiagrammen
    Emmauscollege
-   v20230921CAM
+   v20240415CAM
  *****************************************/
 
 /*****************************************
@@ -32,9 +32,10 @@ String response = "timeout"; // bericht van drone
 long int startTijd = millis();
 
 // variabelen voor de toestanden
-const int OPSTIJGEN = 1; // tel af tot spel start
-const int DRAAIEN   = 2; // speel het spel
-const int LANDEN    = 3; // laat zien wie de winnaar is
+const int OPSTIJGEN = 1; // laat de drone opstijgen
+const int VOORUIT   = 2; // de drone gaat een stukje vooruit
+const int DRAAIEN   = 3; // de drone draait met de klok mee
+const int LANDEN    = 4; // laat de drone landen
 int toestand = OPSTIJGEN;
 unsigned long toestandStartTijd = 0;
 
@@ -74,6 +75,18 @@ uint8_t matrix_b3[] = {
       0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
 };
 
+// symbool 4 maken voor weergave op matrix
+uint8_t matrix_b4[] = {
+      0,   0,   0,   0, 255,   0,   0,   0,   0,   0, 255,   0,   0,   0,   0,   0,
+      0,   0,   0,   0, 255,   0,   0,   0,   0,   0, 255,   0,   0,   0,   0,   0,
+      0,   0,   0,   0, 255,   0,   0,   0,   0,   0, 255,   0,   0,   0,   0,   0,
+      0,   0,   0,   0, 255,   0, 255,   0, 255,   0, 255,   0,   0,   0,   0,   0,
+      0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 255,   0,   0,   0,   0,   0,
+      0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 255,   0,   0,   0,   0,   0,
+      0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 255,   0,   0,   0,   0,   0,
+      0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 255,   0,   0,   0,   0,   0,
+};
+
 /*****************************************
    functies die je gebruikt maken
  *****************************************/
@@ -94,16 +107,19 @@ void setup() {
   tt_sensor.SetTimeout(500); 
   if (!tt_sensor.Init()) {
      Serial.println("ERROR: Failed to detect and initialize TOF sensor!");
-     while (1) {}
+     while (1) {}   // er is iets fout, programma mag niet doorgaan en blijft daarom hier hangen in oneindige loop
   }
   
   // tello initialiseren
-  Serial.begin(115200); // verbinding tussen RMTT en computer starten
+  Serial.begin(115200);                         // verbinding tussen RMTT en computer starten
   Serial.println("Serial init done");
-  Serial1.begin(1000000, SERIAL_8N1, 23, 18); // verbinding tussen RMTT en drone starten
-  tello.startUntilControl(); // wacht tot Tello gereed is om te starten en knopje op RMTT is ingedrukt
-  Serial.println("Tello init done");         // stuur debug-bericht naar serial monitor
-  // tello laten vliegen. 
+  Serial1.begin(1000000, SERIAL_8N1, 23, 18);   // verbinding tussen RMTT en drone starten
+  Serial.println("Tello init done");            // stuur debug-bericht naar serial monitor
+
+  // wacht tot Tello gereed is om te starten en knopje op RMTT is ingedrukt
+  tello.startUntilControl();
+   
+  // tello laten vliegen:
   // Er zijn allerlei commando's die de drone naar een bepaalde plek sturen, zie de SDK 3.0 documentatie uit de repo. 
   // Die plek is wel onnauwkeurig.
   // Als de drone een mission pad herkent, dan kun je de drone naar een plek sturen ten opzichte van het mission pad 
@@ -129,40 +145,51 @@ void setup() {
 void loop() {
 
   // lees sensorwaarden
+
+  // response na geven van eindigende commando's
+  // response is "timeout" (nog niets beschikbaar), "ETT ok" (commando uitgevoerd) of "ETT ..." (er is iets mis gegaan)
+  // zie SDK documentatie voor meer informatie over response
   response = "timeout";
   response = tello.getTelloResponseString(100); // response is "timeout" als na 100 ms nog geen bericht is ontvangen (de drone is dan nog bezig met de laatste opdracht)
-  if (response != "timeout") {Serial.print("TT drone response:");Serial.println(response);}
-  // response is timeout (niks beschikbaar), ETT ok (commando uitgevoerd) of ETT ... (er is iets mis gegaan)
-  // zie SDK documentatie voor meer informatie over response
-
+  if (response != "timeout") {
+     Serial.print("TT drone response:");
+     Serial.println(response);
+  }
+  
+  // lezen afstandsensor
   afstand = tt_sensor.ReadRangeSingleMillimeters(); // afstand in mm, sensor leest tot ongeveer 1000 mm, 8192 betekent buiten range
-  if (tt_sensor.TimeoutOccurred()) {Serial.println("ERROR: timeout reading TOF sensor");}
+  if (tt_sensor.TimeoutOccurred()) {
+     Serial.println("ERROR: timeout reading TOF sensor");
+  }
+
 
   // bepaal toestand
   if (toestand == OPSTIJGEN) {
-    if (response == "ETT ok") { // drone klaar met opstijgen
+    if (response == "ETT ok") { // drone is klaar met opstijgen
+      toestand = VOORUIT;
+         Serial.println("Nieuwe toestand: VOORUIT");
+      Serial1.printf("[TELLO] %s", "forward 30");    // laat de drone 30 cm naar voren vliegen, code uitvoeren gaat door terwijl drone draait
+      Serial.print("TT drone command:");
+      Serial.println("cw 90");                       // stuur debug-bericht naar serial monitor
+    }
+  }
+  else if (toestand == VOORUIT) {
+    if (response == "ETT ok") {
       toestand = DRAAIEN;
-      Serial.println("Nieuwe toestand: DRAAIEN");
-      Serial1.printf("[TELLO] %s", "cw 90");     // draai stuk, code uitvoeren gaat door terwijl drone draait
-      Serial.print("TT drone command:");Serial.println("cw 90");  // stuur debug-bericht naar serial monitor
+      Serial.println("Nieuwe toestand: DRAAIEN
+      Serial1.printf("[TELLO] %s", "rc 0 0 0 30")    // laat de drone op 30% snelheid om zijn as draaien (voor de andere parameters: zie SDK)
+      Serial.print("TT drone command:");
+      Serial.println("rc 0 0 0 30");                 // stuur debug-bericht naar serial monitor
     }
   }
   else if (toestand == DRAAIEN) {
-    if (response == "ETT ok" && // drone heeft 90 graden gedraaid
-        afstand < 500) { // afstandssensor ziet iets op minder dan 50 cm (bijvoorbeeld een hand)
-      // het stop commando zou moeten werken, maar de drone geeft als response "ETT unknown command: stop[TELLO]"
-      // daarom maar gekozen voor een minder ideale oplossing waarbij de drone steeds een stukje draait.
-      // Serial1.printf("[TELLO] %s", "stop"); // vorige commando (draaien) waarmee de drone bezig is wordt afgebroken
-      // Serial.print("TT drone command:");Serial.println("stop"); // stuur debug-bericht naar serial monitor
+     if (afstand < 500) {
       toestand = LANDEN;
       Serial.println("Nieuwe toestand: LANDEN");
-      Serial1.printf("[TELLO] %s", "land"); // stuur commando landen, code uitvoeren gaat door terwijl drone landt 
-      Serial.print("TT drone command:");Serial.println("land"); // stuur debug-bericht naar serial monitor
+      Serial1.printf("[TELLO] %s", "land");          // stuur commando landen, code uitvoeren gaat door terwijl drone landt 
+      Serial.print("TT drone command:");
+      Serial.println("land");                        // stuur debug-bericht naar serial monitor
     } 
-    else if (response == "ETT ok" ) { // verder draaien, want niks dichter bij dan 500 mm
-      Serial1.printf("[TELLO] %s", "cw 90");     // draai stuk, code uitvoeren gaat door terwijl drone draait
-      Serial.print("TT drone command:");Serial.println("cw 90");  // stuur debug-bericht naar serial monitor
-    }
   }
   else if (toestand == LANDEN) {
     // drone blijft in deze toestand tot reset
@@ -176,10 +203,13 @@ void loop() {
   if (toestand == OPSTIJGEN) {
     tt_matrix.SetAllPWM((uint8_t *)matrix_b1); // zet 1 op matrix
   }
-  else if (toestand == DRAAIEN) {
+  else if (toestand == VOORUIT) {
     tt_matrix.SetAllPWM((uint8_t *)matrix_b2); // zet 2 op matrix
   }
+  else if (toestand == DRAAIEN) {
+    tt_matrix.SetAllPWM((uint8_t *)matrix_b3); // zet 2 op matrix
+  }
   else if (toestand == LANDEN) {
-    tt_matrix.SetAllPWM((uint8_t *)matrix_b3); // zet 3 op matrix
+    tt_matrix.SetAllPWM((uint8_t *)matrix_b4); // zet 3 op matrix
   }
 }
