@@ -176,8 +176,8 @@ void loop() {
   else if (toestand == VOORUIT) {
     if (response == "ETT ok") {
       toestand = DRAAIEN;
-      Serial.println("Nieuwe toestand: DRAAIEN
-      Serial1.printf("[TELLO] %s", "rc 0 0 0 30")    // laat de drone op 30% snelheid om zijn as draaien (voor de andere parameters: zie SDK)
+      Serial.println("Nieuwe toestand: DRAAIEN");
+      Serial1.printf("[TELLO] %s", "rc 0 0 0 30");    // laat de drone op 30% snelheid om zijn as draaien (voor de andere parameters: zie SDK)
       Serial.print("TT drone command:");
       Serial.println("rc 0 0 0 30");                 // stuur debug-bericht naar serial monitor
     }
@@ -207,9 +207,9 @@ void loop() {
     tt_matrix.SetAllPWM((uint8_t *)matrix_b2); // zet 2 op matrix
   }
   else if (toestand == DRAAIEN) {
-    tt_matrix.SetAllPWM((uint8_t *)matrix_b3); // zet 2 op matrix
+    tt_matrix.SetAllPWM((uint8_t *)matrix_b3); // zet 3 op matrix
   }
   else if (toestand == LANDEN) {
-    tt_matrix.SetAllPWM((uint8_t *)matrix_b4); // zet 3 op matrix
+    tt_matrix.SetAllPWM((uint8_t *)matrix_b4); // zet  op matrix
   }
 }
